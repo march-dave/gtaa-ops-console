@@ -35,18 +35,17 @@ local/demo mode — see `apps/api/src/plugins/auth.ts` and
 └────────────┘         └────────────┘
         │                    │
         └──────── @gtaa/contracts ───────┐
-                  (Zod schemas + types,  │
-                   OpenAPI spec)         │
+                   (Zod schemas + types)
                                          ▼
-                                 generated openapi.json
-                                 served at /docs (Swagger UI)
+                                Swagger UI served at /docs
+                                (built by Fastify from route schemas)
 ```
 
 ### Tech stack
 
 - **Frontend**: React 18, Vite 6, Tailwind v4, React Router, TanStack Query
 - **Backend**: Node 22, Fastify 5, Zod, fastify-type-provider-zod, Pino
-- **Contracts**: shared Zod schemas in `packages/contracts` with auto-generated OpenAPI spec
+- **Contracts**: shared Zod schemas in `packages/contracts` (one file per domain)
 - **Auth**: MSAL-style. Mock mode in dev (header `X-Mock-User: viewer|duty|ops`), Entra ID for deploy
 - **Infra (planned)**: Azure Static Web Apps (FE) + App Service Linux (API), Key Vault, App Insights, Bicep IaC, GitHub Actions CI
 
@@ -57,7 +56,6 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full picture and
 
 ```bash
 pnpm install
-pnpm --filter @gtaa/contracts openapi   # generate openapi.json (optional)
 
 # In two terminals:
 pnpm --filter @gtaa/api dev             # API on http://localhost:8787
@@ -86,7 +84,7 @@ gtaa-ops-console/
 │   ├── api/                # Fastify + TypeScript
 │   └── web/                # React + Vite
 ├── packages/
-│   └── contracts/          # Zod schemas + OpenAPI generator (shared)
+│   └── contracts/          # Shared API schemas (Zod) — one file per domain
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── RUNBOOK.md
