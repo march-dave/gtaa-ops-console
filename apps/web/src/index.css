@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e6eef7;
+  --color-brand-100: #cfdcec;
+  --color-brand-400: #0077c8;
+  --color-brand-500: #003da5;
+  --color-brand-600: #002b78;
+  --color-brand-700: #001f55;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: #eff3f8;
+  color: #0e1b2e;
+}
+
+/*
+ * The app was originally styled as a dark ops console. For recruiter-facing
+ * demos, keep the same component structure but shift the slate utilities into
+ * a brighter enterprise-console palette.
+ */
+.bg-slate-950 {
+  background-color: #eff3f8 !important;
+}
+
+[class~="bg-slate-950/30"],
+[class~="bg-slate-950/60"] {
+  background-color: rgba(248, 250, 252, 0.72) !important;
+}
+
+[class~="bg-slate-950/70"] {
+  background-color: rgba(15, 23, 42, 0.36) !important;
+}
+
+.bg-slate-900,
+[class~="bg-slate-900/30"],
+[class~="bg-slate-900/40"],
+[class~="bg-slate-900/50"],
+[class~="bg-slate-900/80"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bg-slate-800,
+[class~="bg-slate-800/60"] {
+  background-color: #e8eef6 !important;
+}
+
+.bg-slate-700 {
+  background-color: #d8e2ee !important;
+}
+
+[class~="hover:bg-slate-800"]:hover,
+[class~="hover:bg-slate-800/60"]:hover,
+[class~="hover:bg-slate-700"]:hover {
+  background-color: #dbe6f2 !important;
+}
+
+.text-slate-100,
+.text-slate-200 {
+  color: #162033 !important;
+}
+
+.text-slate-300 {
+  color: #334155 !important;
+}
+
+.text-slate-400 {
+  color: #64748b !important;
+}
+
+.text-slate-500 {
+  color: #7c8ca3 !important;
+}
+
+.border-slate-800 {
+  border-color: #d8e1ec !important;
+}
+
+.border-slate-700 {
+  border-color: #c5d2e2 !important;
+}
+
+.divide-slate-800 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #d8e1ec !important;
+}
+
+[class~="bg-red-950/40"] {
+  background-color: #fff1f2 !important;
+}
+
+[class~="bg-amber-950/30"],
+[class~="bg-amber-900/30"],
+[class~="hover:bg-amber-900/30"]:hover {
+  background-color: #fffbeb !important;
+}
+
+[class~="bg-orange-900/30"],
+[class~="bg-orange-900/40"],
+[class~="hover:bg-orange-900/30"]:hover {
+  background-color: #fff7ed !important;
+}
+
+[class~="bg-emerald-900/30"],
+[class~="bg-emerald-900/40"] {
+  background-color: #ecfdf5 !important;
+}
+
+[class~="bg-sky-900/40"] {
+  background-color: #eff6ff !important;
+}
+
+.border-red-900,
+.border-red-800,
+[class~="border-red-900/60"] {
+  border-color: #fecdd3 !important;
+}
+
+[class~="border-amber-900/60"],
+.border-amber-800,
+.border-amber-700 {
+  border-color: #fde68a !important;
+}
+
+.border-orange-700 {
+  border-color: #fed7aa !important;
+}
+
+/*
+ * Status text colors were originally chosen for dark backgrounds (light/pale
+ * variants for legibility on near-black). Under the light enterprise palette,
+ * those same classes render as low-contrast pale text on white cards. Pin
+ * them to deeper variants so labels stay readable everywhere.
+ */
+.text-red-200,
+.text-red-300 {
+  color: #991b1b !important;
+}
+
+.text-amber-200,
+.text-amber-300,
+.text-amber-400 {
+  color: #92400e !important;
+}
+
+.text-orange-200,
+.text-orange-300 {
+  color: #9a3412 !important;
+}
+
+.text-emerald-200,
+.text-emerald-300 {
+  color: #065f46 !important;
+}
+
+.text-sky-200,
+.text-sky-300 {
+  color: #075985 !important;
+}
