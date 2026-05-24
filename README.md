@@ -92,19 +92,9 @@ gtaa-ops-console/
 └── infra/                  # (planned) Bicep + GitHub Actions
 ```
 
-## Roadmap (1-week demo plan)
-
-- [x] **Day 1** — Monorepo + contracts + Fastify skeleton + React shell + Forecast (working)
-- [x] **Day 2** — Gate Approval module (deep) + Audit log UI
-- [x] **Day 3** — Apron CV stream (SSE) + Vitest test suite (18 tests)
-- [x] **Day 4** — Sensors strip + Power BI embed pattern + ADR 0006
-- [ ] **Day 5** — Bicep IaC + Azure deploy (Static Web Apps + App Service) + GitHub Actions
-- [ ] **Day 6** — Real Entra dev tenant + RBAC end-to-end + Application Insights wiring
-- [ ] **Day 7** — Polish, Playwright E2E, demo script rehearsal
-
 ## Testing
 
 ```bash
-pnpm --filter @gtaa/api test     # 18 Fastify-inject tests covering auth, gates, CV, audit
-pnpm typecheck                   # all 3 workspaces
+pnpm --filter @gtaa/api test     # Fastify-inject tests covering auth, gates, CV, sensors, reports, insights, audit
+pnpm typecheck                   # all workspaces
 ```
