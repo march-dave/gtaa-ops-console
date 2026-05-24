@@ -4,13 +4,24 @@ Decision-support console for airport operations — a unified surface for ML
 forecasts, computer-vision alerts, sensor analytics, and gate-allocation
 workflows with full audit traceability.
 
-**Live**: <https://gtaa-ops-a04931.azurewebsites.net>
-&nbsp;·&nbsp; **API docs**: <https://gtaa-ops-a04931.azurewebsites.net/docs>
-&nbsp;·&nbsp; **Health**: <https://gtaa-ops-a04931.azurewebsites.net/health>
+| Link | URL |
+| --- | --- |
+| Live demo | https://gtaa-ops-a04931.azurewebsites.net |
+| API docs | https://gtaa-ops-a04931.azurewebsites.net/docs |
+| Health check | https://gtaa-ops-a04931.azurewebsites.net/health |
 
-Sign in via the **"Mock access"** dropdown at the top of the page
-(Viewer / Duty Manager / Ops Manager). The mock auth swaps in for Entra ID in
-local/demo mode — see `apps/api/src/plugins/auth.ts` and
+## Demo access
+
+Use the **Mock access** dropdown in the top-right of the app.
+
+| Role | What it can do |
+| --- | --- |
+| Viewer | Read-only access |
+| Duty Manager | Approve/reject/override gate recommendations and act on CV alerts |
+| Ops Manager | Higher-role operator view for the same protected workflows |
+
+Mock auth is used only for local/demo mode and stands in for Entra ID app roles.
+See `apps/api/src/plugins/auth.ts` and
 [ADR 0004](docs/adr/0004-entra-id-app-roles-not-groups.md).
 
 ## What's inside
