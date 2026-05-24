@@ -1,12 +1,10 @@
 # GTAA Ops Console
 
-Decision-support console for airport operations — a demo project showing how to
-turn ML outputs, sensor data, and CV alerts into a maintainable application
-with auditable workflows.
+Decision-support console for airport operations — a unified surface for ML
+forecasts, computer-vision alerts, sensor analytics, and gate-allocation
+workflows with full audit traceability.
 
-> Demo prepared for the GTAA Full Stack / Product Engineer interview.
-
-**Live demo**: <https://gtaa-ops-a04931.azurewebsites.net>
+**Live**: <https://gtaa-ops-a04931.azurewebsites.net>
 &nbsp;·&nbsp; **API docs**: <https://gtaa-ops-a04931.azurewebsites.net/docs>
 &nbsp;·&nbsp; **Health**: <https://gtaa-ops-a04931.azurewebsites.net/health>
 
