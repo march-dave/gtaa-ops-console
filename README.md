@@ -72,26 +72,37 @@ See `apps/api/src/plugins/auth.ts` and
 
 ## Architecture
 
+```mermaid
+flowchart LR
+    user(["Operator browser"])
+
+    subgraph svc ["Azure App Service Linux · Node 22"]
+        direction TB
+        api["Fastify API<br/>Zod-validated routes · Pino"]
+        spa["React SPA<br/>TanStack Query · EventSource"]
+        api -.- spa
+    end
+
+    contracts(["@gtaa/contracts<br/>Zod schemas, one file per domain"])
+
+    user <==>|"HTTPS · same origin (REST + SSE)"| svc
+    contracts -.->|"types + runtime validation"| api
+    contracts -.->|"types"| spa
 ```
-┌────────────┐  HTTP   ┌────────────┐
-│  apps/web  │ ──────▶ │  apps/api  │
-│ React+Vite │         │  Fastify   │
-└────────────┘         └────────────┘
-        │                    │
-        └──────── @gtaa/contracts ───────┐
-                   (Zod schemas + types)
-                                         ▼
-                                Swagger UI served at /docs
-                                (built by Fastify from route schemas)
-```
+
+A single Azure App Service hosts both surfaces. The React SPA is built ahead
+of time and served as static files by Fastify (`@fastify/static`), with an
+SPA fallback for client-side routes. The API, Swagger UI (`/docs`), and the
+SPA all share one origin — no CORS configuration in production.
 
 ### Tech stack
 
 - **Frontend**: React 18, Vite 6, Tailwind v4, React Router, TanStack Query
 - **Backend**: Node 22, Fastify 5, Zod, fastify-type-provider-zod, Pino
 - **Contracts**: shared Zod schemas in `packages/contracts` (one file per domain)
-- **Auth**: MSAL-style. Mock mode in dev (header `X-Mock-User: viewer|duty|ops`), Entra ID for deploy
-- **Infra (planned)**: Azure Static Web Apps (FE) + App Service Linux (API), Key Vault, App Insights, Bicep IaC, GitHub Actions CI
+- **Auth**: MSAL-style. Mock mode in dev / demo (header `X-Mock-User: viewer|duty|ops`), Entra ID app roles for production
+- **Infra**: Azure App Service Linux (single host for API + SPA), built locally with esbuild + Vite and deployed via `az webapp deploy --type zip`
+- **Planned**: GitHub Actions OIDC for automated deploys, Bicep IaC, Application Insights wiring, Key Vault for Power BI / Fabric credentials
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full picture and
 [`docs/adr/`](docs/adr/) for design decisions.

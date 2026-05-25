@@ -106,19 +106,35 @@ audit plugin writes immutable AuditEvent
 
 ## Deployment (Azure)
 
-```
-[GitHub] → [Actions]
-              │
-              ├─▶ [Static Web Apps]  ← FE bundle (apps/web)
-              └─▶ [App Service Linux] ← API container (apps/api)
-                          │
-                          ├─▶ [App Insights]   (logs + metrics + traces)
-                          ├─▶ [Key Vault]      (managed identity, no secrets in code)
-                          └─▶ [Azure SQL Basic / Cosmos serverless]  (audit + state)
+```mermaid
+flowchart LR
+    dev["Local workspace<br/>esbuild + vite build"]
+    zip["deploy.zip<br/>(bundled API + SPA)"]
+    svc["Azure App Service Linux · Node 22<br/>(single host)"]
+    mi(["Managed Identity<br/>(system-assigned)"])
+    kv["Key Vault<br/>(planned)"]
+    ai["Application Insights<br/>(planned)"]
+    pbi["Power BI / Fabric<br/>(planned)"]
+
+    dev -->|"pnpm build:deploy"| zip
+    zip -->|"az webapp deploy --type zip"| svc
+    svc -.-> mi
+    mi -.->|"secrets pull"| kv
+    svc -.->|"traces, metrics"| ai
+    mi -.->|"service principal / lakehouse"| pbi
 ```
 
-Bicep modules live in `infra/azure/` (planned). Container Apps and Functions
-are documented as alternatives in [ADR 0006](adr/0006-azure-hosting-choice.md).
+The deployed App Service is a single Linux Node 22 host. Both the Fastify API
+and the React SPA bundle ship inside one zip artifact built locally (see
+[`apps/api/scripts/build-deploy.mjs`](../apps/api/scripts/build-deploy.mjs))
+and pushed with `az webapp deploy`.
+
+Bicep modules and a GitHub Actions OIDC workflow are the planned next steps;
+hosting alternatives (Container Apps, Functions) will be compared in a later
+ADR. Power BI, Fabric Lakehouse, and Key Vault integrations are documented as
+patterns in [ADR 0006](adr/0006-power-bi-embed-via-service-principal.md) and
+[ADR 0008](adr/0008-fabric-lakehouse-integration.md); the live demo runs in
+**demo mode** with synthetic data.
 
 ## Out of scope (for this demo)
 
