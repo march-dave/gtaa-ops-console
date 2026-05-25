@@ -17,6 +17,7 @@
     "seed": "pnpm --filter @gtaa/api seed"
   },
   "devDependencies": {
+    "playwright": "^1.60.0",
     "typescript": "^5.6.3"
   }
 }

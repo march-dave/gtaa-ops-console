@@ -10,6 +10,41 @@ workflows with full audit traceability.
 | API docs | https://gtaa-ops-a04931.azurewebsites.net/docs |
 | Health check | https://gtaa-ops-a04931.azurewebsites.net/health |
 
+## Screens
+
+Captured from the live deployment (Duty Manager role). The hosted demo runs on
+Azure App Service Linux F1, which sleeps after ~20 minutes of inactivity — the
+first request after a quiet period may take a few seconds to warm up. These
+images let you skim the UI without that wait.
+
+### Passenger Forecast — hourly P10 / P50 / P90 with what-if controls
+
+![Passenger Forecast](docs/screenshots/01-forecast.png)
+
+### Gate Allocation Approval — approve / reject / override with audited reason
+
+![Gate Approval](docs/screenshots/02-gate-approval.png)
+
+### Apron CV — live SSE stream of synthetic computer-vision alerts
+
+![Apron CV](docs/screenshots/03-apron-cv.png)
+
+### Sensors — anomaly scoring computed server-side, never in the UI
+
+![Sensors](docs/screenshots/04-sensors.png)
+
+### Operations Insights — Microsoft Fabric Lakehouse pattern (demo mode labeled)
+
+![Operations Insights](docs/screenshots/05-insights.png)
+
+### Reports — Power BI embed-token endpoint pattern
+
+![Reports](docs/screenshots/06-reports.png)
+
+### Audit Log — immutable trail with filters and traceId
+
+![Audit Log](docs/screenshots/07-audit.png)
+
 ## Demo access
 
 Use the **Mock access** dropdown in the top-right of the app.
